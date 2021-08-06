@@ -1,5 +1,5 @@
-# Copy To Branches Action/Shell Script
-
+# merge branches
+[planetoftheweb/copy-to-branches](https://github.com/planetoftheweb/copy-to-branches)
 This action runs a shell script `entrypoint.sh` file which lets you copy one or more files from a **key** branch to any other branches in your repo. By default, it copies **LICENSE**, **NOTICE** and **README.md** from the main/master branch to all branches on repository.
 
 # Running this action
@@ -68,8 +68,8 @@ jobs:
 This will copy only the `README.md` file to all branches, but skip two branches, one named `work` and one called `99_target`.
 
 ## Key
-This is the key branch that you're using as the origin, in other words, the branch you want to copy from. If you don't include this, it will assume that you want to use a branch called `main` or `master` as long as either of them exist.
 
+This is the key branch that you're using as the origin, in other words, the branch you want to copy from. If you don't include this, it will assume that you want to use a branch called `main` or `master` as long as either of them exist.
 
 ```yaml
 env:
@@ -77,7 +77,8 @@ env:
 ```
 
 ## Files to copy
-By default, the script assumes you want to copy the `LICENSE`, `NOTICE` and `README.md` files. If you want to change this, you can pass along a different list of files to use instead. Use the `files` keyword and then pass a list of one or more branches separated by spaces.
+
+By default, the script assumes you want to copy the `LICENSE`,  `NOTICE` and `README.md` files. If you want to change this, you can pass along a different list of files to use instead. Use the `files` keyword and then pass a list of one or more branches separated by spaces.
 
 ```yaml
 env:
@@ -85,6 +86,7 @@ env:
 ```
 
 ## Branches to Copy
+
 By default, the script assumes you want to copy the files to all the branches in the repo. If you want to copy the files to only certain branches, then you can include this option.
 
 ```yaml
@@ -98,6 +100,7 @@ env:
 You can easily add a key branch with the `key` option.
 
 ## Branches to Exclude
+
 By default, the script will copy the files to all branches. You can exclude one or more branches by creating a list of branches to exclude.
 
 ```yaml
