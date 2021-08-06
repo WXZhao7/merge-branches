@@ -16,10 +16,10 @@ args_build="${build}"
 echo "--GIT FETCH origin"
 git fetch origin
 
-git switch -q ${args_base}
+git switch -q origin/${args_base}
 
 # create build branch
-git switch -C ${args_build}
+git switch -C origin/${args_build}
 
 # merge
 git merge -Xtheirs origin/${args_over} --m "merge ${args_base} and ${args_over} to ${args_build}" --allow-unrelated-historie
