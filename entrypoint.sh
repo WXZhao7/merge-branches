@@ -29,7 +29,7 @@ git switch -C ${args_build}
 
 # merge
 git merge -Xtheirs ${args_over} --m "merge ${args_base} and ${args_over} to ${args_build}" --allow-unrelated-historie
-
+git merge -Xours origin/${args_build} --m "update ${args_build}"
 git push --set-upstream origin ${args_build}
 
 git switch -q ${args_base}
