@@ -16,11 +16,13 @@ args_build="${build}"
 echo "--GIT FETCH origin"
 git fetch origin
 
+# pull over branch
 git switch -q ${args_over}
-git merge -Xtheirs origin/${args_over} --m "pull ${args_over}"
+git merge origin/${args_over}
 
+# pull base branch
 git switch -q ${args_base}
-git merge -Xtheirs origin/${args_base} --m "pull ${args_base}"
+git merge origin/${args_base}
 
 # create build branch
 git switch -C ${args_build}
