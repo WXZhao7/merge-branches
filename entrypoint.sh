@@ -21,8 +21,8 @@ git switch -q ${args_base}
 git merge origin/${args_base}
 
 echo "--GIT checkout ${args_build} Branch base on ${args_base}"
-git switch -C ${args_build}
-git merge origin/${args_base}
+git checkout -C ${args_build}
+git push --delete origin ${args_base}
 
 echo "--GIT merge ${args_over} Branch over ${args_build}"
 git merge -Xtheirs ${args_over} --m "merge ${args_base} and ${args_over} to ${args_build}" --allow-unrelated-historie
@@ -35,7 +35,7 @@ for file in $(git ls-files -i -c --exclude="${args_exclude}");
 
 git add -A && git commit -m "Update ${args_build} Branch"
 
-git push --force --set-upstream origin ${args_build}
+git push --set-upstream origin ${args_build}
 
 git switch -q ${args_base}
 
