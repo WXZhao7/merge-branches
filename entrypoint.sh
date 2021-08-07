@@ -1,9 +1,4 @@
 #!/bin/bash
-
-# Checks out each of your branches 
-# copies the current version of 
-# certain files to each branch
-
 echo "==================================="
 
 git config --global user.name "${GITHUB_ACTOR}"
@@ -12,24 +7,34 @@ git config --global user.email "${INPUT_EMAIL}"
 args_base="${base}"
 args_over="${over}"
 args_build="${build}"
+args_exclude="${exclude}"
 
 echo "--GIT FETCH origin"
 git fetch origin
 
-# pull over branch
+echo "--GIT pull ${args_over} Branch"
 git switch -q ${args_over}
 git merge origin/${args_over}
 
-# pull base branch
+echo "--GIT pull ${args_base} Branch"
 git switch -q ${args_base}
 git merge origin/${args_base}
 
-# create build branch
+echo "--GIT checkout ${args_build} Branch base on ${args_base}"
 git switch -C ${args_build}
+git merge origin/${args_base}
 
-# merge
+echo "--GIT merge ${args_over} Branch over ${args_build}"
 git merge -Xtheirs ${args_over} --m "merge ${args_base} and ${args_over} to ${args_build}" --allow-unrelated-historie
-git merge -Xours origin/${args_build} --m "update ${args_build}"
+
+echo "--GIT rm ${args_exclude} in ${args_build} Branch"
+for file in $(git ls-files -i -c --exclude="${args_exclude}");
+    do
+        git rm -f $file
+    done
+
+git add -A && git commit -m "Update ${args_build} Branch"
+
 git push --set-upstream origin ${args_build}
 
 git switch -q ${args_base}
