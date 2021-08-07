@@ -35,7 +35,7 @@ for file in $(git ls-files -i -c --exclude="${args_exclude}");
 
 git add -A && git commit -m "Update ${args_build} Branch"
 
-git push --set-upstream origin ${args_build}
+git push --force --set-upstream origin ${args_build}
 
 git switch -q ${args_base}
 
