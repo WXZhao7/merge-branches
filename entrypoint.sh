@@ -21,7 +21,7 @@ git switch -q ${args_base}
 git merge origin/${args_base}
 
 echo "--GIT checkout ${args_build} Branch base on ${args_base}"
-git checkout -C ${args_build}
+git checkout -B ${args_build}
 git push --delete origin ${args_base}
 
 echo "--GIT merge ${args_over} Branch over ${args_build}"
