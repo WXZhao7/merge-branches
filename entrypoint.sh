@@ -22,7 +22,7 @@ git merge origin/${args_base}
 
 echo "--GIT checkout ${args_build} Branch base on ${args_base}"
 git checkout -B ${args_build}
-git push --delete origin ${args_base}
+git push --delete origin ${args_build}
 
 echo "--GIT merge ${args_over} Branch over ${args_build}"
 git merge -Xtheirs ${args_over} --m "merge ${args_base} and ${args_over} to ${args_build}" --allow-unrelated-historie
